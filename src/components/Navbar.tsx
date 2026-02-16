@@ -6,6 +6,8 @@ import { motion, AnimatePresence } from "framer-motion";
 const navItems = [
   { to: "/", label: "Home" },
   { to: "/explore", label: "Explore" },
+  { to: "/about", label: "About" },
+  { to: "/developer", label: "Developer" },
 ];
 
 export default function Navbar() {

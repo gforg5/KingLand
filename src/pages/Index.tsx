@@ -140,23 +140,7 @@ export default function Index() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-secondary py-10 border-t border-navy-light/40">
-        <div className="container mx-auto px-4 text-center">
-          <div className="flex items-center justify-center gap-2 mb-3">
-            <Globe className="h-5 w-5 text-emerald" />
-            <span className="font-display font-bold text-secondary-foreground">
-              King<span className="text-gradient-gold">Land</span>
-            </span>
-          </div>
-          <p className="text-sm text-muted-foreground">
-            Real data. Genuine knowledge. 195+ countries.
-          </p>
-          <p className="text-xs text-muted-foreground mt-2">
-            Data sourced from REST Countries API, UN & World Bank
-          </p>
-        </div>
-      </footer>
+      {/* removed inline footer — now using shared Footer component */}
     </div>
   );
 }
