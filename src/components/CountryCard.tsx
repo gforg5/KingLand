@@ -20,6 +20,7 @@ export default function CountryCard({ country, index = 0 }: CountryCardProps) {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: Math.min(index * 0.03, 0.5), duration: 0.4 }}
+      whileHover={{ scale: 1.04, y: -8 }}
     >
       <Link
         to={`/country/${country.cca3}`}
