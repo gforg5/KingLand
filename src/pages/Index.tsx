@@ -24,13 +24,62 @@ export default function Index() {
     <div className="min-h-screen">
       {/* Hero */}
       <section className="relative min-h-[90vh] flex items-center gradient-hero overflow-hidden">
+        {/* Animated hero background */}
         <div className="absolute inset-0">
-          <img
+          <motion.img
             src={heroGlobe}
             alt="Globe"
             className="w-full h-full object-cover opacity-40 mix-blend-lighten"
+            animate={{
+              scale: [1, 1.08, 1],
+              rotate: [0, 1, -1, 0],
+            }}
+            transition={{
+              duration: 20,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
           />
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-secondary" />
+
+          {/* Floating light orbs */}
+          {[...Array(6)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute rounded-full"
+              style={{
+                width: 100 + i * 50,
+                height: 100 + i * 50,
+                left: `${15 + i * 15}%`,
+                top: `${20 + (i % 3) * 20}%`,
+                background: i % 2 === 0
+                  ? "radial-gradient(circle, hsl(var(--emerald) / 0.08), transparent 70%)"
+                  : "radial-gradient(circle, hsl(var(--gold) / 0.06), transparent 70%)",
+              }}
+              animate={{
+                y: [0, -30 - i * 5, 0],
+                x: [0, 10 + i * 3, 0],
+                opacity: [0.3, 0.7, 0.3],
+              }}
+              transition={{
+                duration: 6 + i * 2,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: i * 0.8,
+              }}
+            />
+          ))}
+
+          {/* Particle dots */}
+          {[...Array(20)].map((_, i) => (
+            <motion.div
+              key={`p-${i}`}
+              className="absolute w-1 h-1 rounded-full bg-emerald/30"
+              style={{ left: `${Math.random() * 100}%`, top: `${Math.random() * 100}%` }}
+              animate={{ opacity: [0, 1, 0], scale: [0, 1.5, 0] }}
+              transition={{ duration: 3 + Math.random() * 3, repeat: Infinity, delay: Math.random() * 5 }}
+            />
+          ))}
         </div>
 
         <div className="container relative z-10 mx-auto px-4 py-32">
@@ -40,17 +89,28 @@ export default function Index() {
             transition={{ duration: 0.7 }}
             className="max-w-3xl"
           >
-            <div className="inline-flex items-center gap-2 rounded-full bg-emerald/10 border border-emerald/20 px-4 py-1.5 mb-6">
+            <motion.div
+              className="inline-flex items-center gap-2 rounded-full bg-emerald/10 border border-emerald/20 px-4 py-1.5 mb-6"
+              animate={{ boxShadow: ["0 0 0px hsl(var(--emerald) / 0)", "0 0 20px hsl(var(--emerald) / 0.15)", "0 0 0px hsl(var(--emerald) / 0)"] }}
+              transition={{ duration: 3, repeat: Infinity }}
+            >
               <Sparkles className="h-4 w-4 text-gold" />
               <span className="text-sm font-medium text-emerald-light">
                 Explore 195+ Countries — Real Data, Zero Fluff
               </span>
-            </div>
+            </motion.div>
 
             <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl font-extrabold leading-[1.1] mb-6">
               <span className="text-secondary-foreground">Discover the</span>
               <br />
-              <span className="text-gradient-gold">World's Knowledge</span>
+              <motion.span
+                className="text-gradient-gold inline-block"
+                animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
+                transition={{ duration: 4, repeat: Infinity }}
+                style={{ backgroundSize: "200% 200%" }}
+              >
+                World's Knowledge
+              </motion.span>
             </h1>
 
             <p className="text-lg sm:text-xl text-muted-foreground max-w-xl mb-10 leading-relaxed">
@@ -58,13 +118,15 @@ export default function Index() {
             </p>
 
             <div className="flex flex-wrap gap-4">
-              <Link
-                to="/explore"
-                className="inline-flex items-center gap-2 gradient-accent text-primary-foreground font-semibold px-8 py-3.5 rounded-xl shadow-glow hover:opacity-90 transition-opacity"
-              >
-                Start Exploring
-                <ArrowRight className="h-5 w-5" />
-              </Link>
+              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.97 }}>
+                <Link
+                  to="/explore"
+                  className="inline-flex items-center gap-2 gradient-accent text-primary-foreground font-semibold px-8 py-3.5 rounded-xl shadow-glow hover:opacity-90 transition-opacity"
+                >
+                  Start Exploring
+                  <ArrowRight className="h-5 w-5" />
+                </Link>
+              </motion.div>
             </div>
           </motion.div>
         </div>
@@ -81,7 +143,8 @@ export default function Index() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="text-center p-6 rounded-xl bg-navy-light/40 border border-navy-light/60"
+                whileHover={{ scale: 1.06, y: -4 }}
+                className="text-center p-6 rounded-xl bg-navy-light/40 border border-navy-light/60 hover:border-emerald/30 hover:shadow-glow transition-all duration-300"
               >
                 <stat.icon className="h-8 w-8 text-emerald mx-auto mb-3" />
                 <div className="font-display text-2xl font-bold text-secondary-foreground">
@@ -139,8 +202,6 @@ export default function Index() {
           </div>
         </div>
       </section>
-
-      {/* removed inline footer — now using shared Footer component */}
     </div>
   );
 }
