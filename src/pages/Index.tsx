@@ -24,21 +24,21 @@ export default function Index() {
     <div className="min-h-screen">
       {/* Hero */}
       <section className="relative min-h-[90vh] flex items-center gradient-hero overflow-hidden">
-        {/* Animated hero background */}
+        {/* Animated hero background - CIRCULAR ROTATION */}
         <div className="absolute inset-0">
           <motion.img
             src={heroGlobe}
             alt="Globe"
             className="w-full h-full object-cover opacity-40 mix-blend-lighten"
             animate={{
-              scale: [1, 1.08, 1],
-              rotate: [0, 1, -1, 0],
+              rotate: [0, 360],
             }}
             transition={{
-              duration: 20,
+              duration: 60,
               repeat: Infinity,
-              ease: "easeInOut",
+              ease: "linear",
             }}
+            style={{ transformOrigin: "center center", scale: 1.4 }}
           />
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-secondary" />
 
@@ -89,10 +89,19 @@ export default function Index() {
             transition={{ duration: 0.7 }}
             className="max-w-3xl"
           >
+            {/* Wobble badge */}
             <motion.div
               className="inline-flex items-center gap-2 rounded-full bg-emerald/10 border border-emerald/20 px-4 py-1.5 mb-6"
-              animate={{ boxShadow: ["0 0 0px hsl(var(--emerald) / 0)", "0 0 20px hsl(var(--emerald) / 0.15)", "0 0 0px hsl(var(--emerald) / 0)"] }}
-              transition={{ duration: 3, repeat: Infinity }}
+              animate={{
+                rotate: [0, -1, 1, -1, 0],
+                scale: [1, 1.02, 0.98, 1.02, 1],
+                boxShadow: [
+                  "0 0 0px hsl(var(--emerald) / 0)",
+                  "0 0 20px hsl(var(--emerald) / 0.15)",
+                  "0 0 0px hsl(var(--emerald) / 0)",
+                ],
+              }}
+              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
             >
               <Sparkles className="h-4 w-4 text-gold" />
               <span className="text-sm font-medium text-emerald-light">
@@ -100,13 +109,32 @@ export default function Index() {
               </span>
             </motion.div>
 
+            {/* Text expand animation */}
             <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl font-extrabold leading-[1.1] mb-6">
-              <span className="text-secondary-foreground">Discover the</span>
+              <motion.span
+                className="text-secondary-foreground inline-block"
+                initial={{ letterSpacing: "0.05em", opacity: 0 }}
+                animate={{ letterSpacing: "0em", opacity: 1 }}
+                transition={{ duration: 1.2, ease: "easeOut" }}
+              >
+                Discover the
+              </motion.span>
               <br />
               <motion.span
                 className="text-gradient-gold inline-block"
-                animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
-                transition={{ duration: 4, repeat: Infinity }}
+                initial={{ letterSpacing: "0.15em", opacity: 0, scale: 0.9 }}
+                animate={{
+                  letterSpacing: "0em",
+                  opacity: 1,
+                  scale: 1,
+                  backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+                }}
+                transition={{
+                  letterSpacing: { duration: 1.5, ease: "easeOut", delay: 0.3 },
+                  opacity: { duration: 1, delay: 0.3 },
+                  scale: { duration: 1.2, delay: 0.3 },
+                  backgroundPosition: { duration: 4, repeat: Infinity, delay: 1.5 },
+                }}
                 style={{ backgroundSize: "200% 200%" }}
               >
                 World's Knowledge
@@ -117,14 +145,33 @@ export default function Index() {
               Authentic country data — capitals, populations, currencies, languages, and more. Your gateway to genuine global knowledge.
             </p>
 
+            {/* Neon Start Exploring button */}
             <div className="flex flex-wrap gap-4">
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.97 }}>
                 <Link
                   to="/explore"
-                  className="inline-flex items-center gap-2 gradient-accent text-primary-foreground font-semibold px-8 py-3.5 rounded-xl shadow-glow hover:opacity-90 transition-opacity"
+                  className="group relative inline-flex items-center gap-2 gradient-accent text-primary-foreground font-semibold px-8 py-3.5 rounded-xl transition-all overflow-hidden"
                 >
-                  Start Exploring
-                  <ArrowRight className="h-5 w-5" />
+                  {/* Neon glow layers */}
+                  <motion.div
+                    className="absolute inset-0 rounded-xl"
+                    animate={{
+                      boxShadow: [
+                        "0 0 5px hsl(var(--emerald) / 0.4), 0 0 20px hsl(var(--emerald) / 0.2), 0 0 40px hsl(var(--emerald) / 0.1)",
+                        "0 0 10px hsl(var(--emerald) / 0.6), 0 0 30px hsl(var(--emerald) / 0.3), 0 0 60px hsl(var(--emerald) / 0.15), 0 0 80px hsl(var(--emerald) / 0.1)",
+                        "0 0 5px hsl(var(--emerald) / 0.4), 0 0 20px hsl(var(--emerald) / 0.2), 0 0 40px hsl(var(--emerald) / 0.1)",
+                      ],
+                    }}
+                    transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                  />
+                  {/* Neon sweep */}
+                  <motion.div
+                    className="absolute inset-0 rounded-xl bg-gradient-to-r from-transparent via-white/20 to-transparent"
+                    animate={{ x: ["-100%", "100%"] }}
+                    transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut", repeatDelay: 1 }}
+                  />
+                  <span className="relative z-10">Start Exploring</span>
+                  <ArrowRight className="relative z-10 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                 </Link>
               </motion.div>
             </div>
