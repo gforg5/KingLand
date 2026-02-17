@@ -5,7 +5,7 @@ import { useState } from "react";
 import kinglandLogo from "@/assets/kingland-logo.png";
 
 export default function Footer() {
-  const [showLocation, setShowLocation] = useState(false);
+  const [hovered, setHovered] = useState(false);
 
   return (
     <footer className="bg-secondary py-12 border-t border-navy-light/40">
@@ -30,55 +30,46 @@ export default function Footer() {
             © 2026 Sayed Mohsin Ali. All rights reserved.
           </p>
 
-          {/* Made with hover reveal */}
+          {/* Made with ❤️ in PK → wipe to Pakhtunistan */}
           <div
-            className="relative cursor-default"
-            onMouseEnter={() => setShowLocation(true)}
-            onMouseLeave={() => setShowLocation(false)}
+            className="relative cursor-default overflow-hidden"
+            onMouseEnter={() => setHovered(true)}
+            onMouseLeave={() => setHovered(false)}
           >
-            <motion.p
-              className="text-sm text-muted-foreground text-center flex items-center gap-1.5"
-              whileHover={{ scale: 1.03 }}
-            >
-              Made with{" "}
-              <motion.span
-                animate={{ scale: [1, 1.3, 1] }}
-                transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+            <div className="relative h-6 flex items-center justify-center min-w-[200px]">
+              {/* Default text: Made with ❤️ in PK */}
+              <motion.div
+                className="absolute inset-0 flex items-center justify-center gap-1.5 text-sm text-muted-foreground"
+                animate={{
+                  x: hovered ? "-110%" : "0%",
+                  opacity: hovered ? 0 : 1,
+                }}
+                transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
               >
-                <Heart className="h-4 w-4 text-destructive fill-destructive" />
-              </motion.span>{" "}
-              in PK
-            </motion.p>
-
-            <AnimatePresence>
-              {showLocation && (
-                <motion.div
-                  initial={{ opacity: 0, y: 8, scale: 0.9, filter: "blur(4px)" }}
-                  animate={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
-                  exit={{ opacity: 0, y: 8, scale: 0.9, filter: "blur(4px)" }}
-                  transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
-                  className="absolute left-1/2 -translate-x-1/2 top-full mt-2 whitespace-nowrap"
+                Made with{" "}
+                <motion.span
+                  animate={{ scale: [1, 1.3, 1] }}
+                  transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
                 >
-                  <motion.div
-                    className="px-4 py-2 rounded-xl bg-navy-light border border-emerald/20 shadow-glow"
-                    initial={{ backgroundPosition: "0% 50%" }}
-                    animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
-                    transition={{ duration: 3, repeat: Infinity }}
-                  >
-                    <motion.span
-                      className="text-sm font-display font-semibold text-gradient-emerald"
-                      initial={{ opacity: 0, x: -10 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: 0.15, duration: 0.3 }}
-                    >
-                      Pakhtunistan, Khyber Pakhtunkhwa
-                    </motion.span>
-                  </motion.div>
-                  {/* Arrow */}
-                  <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-2 h-2 rotate-45 bg-navy-light border-l border-t border-emerald/20" />
-                </motion.div>
-              )}
-            </AnimatePresence>
+                  <Heart className="h-4 w-4 text-destructive fill-destructive" />
+                </motion.span>{" "}
+                in PK
+              </motion.div>
+
+              {/* Revealed text: Pakhtunistan, Khyber Pakhtunkhwa */}
+              <motion.div
+                className="absolute inset-0 flex items-center justify-center"
+                animate={{
+                  x: hovered ? "0%" : "110%",
+                  opacity: hovered ? 1 : 0,
+                }}
+                transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
+              >
+                <span className="text-sm font-display font-semibold text-gradient-emerald whitespace-nowrap">
+                  Pakhtunistan, Khyber Pakhtunkhwa
+                </span>
+              </motion.div>
+            </div>
           </div>
         </div>
       </div>

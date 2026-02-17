@@ -30,16 +30,32 @@ export default function Developer() {
             style={{ backgroundSize: "200% 200%" }}
           />
 
-          {/* Top gradient banner */}
+          {/* Top gradient banner with BIG bubbles */}
           <div className="h-32 sm:h-40 gradient-hero relative overflow-hidden">
-            {/* Floating particles */}
-            {[...Array(12)].map((_, i) => (
+            {/* Big animated bubbles */}
+            {[...Array(8)].map((_, i) => (
               <motion.div
                 key={i}
-                className="absolute w-1 h-1 rounded-full bg-emerald/40"
-                style={{ left: `${Math.random() * 100}%`, top: `${Math.random() * 100}%` }}
-                animate={{ opacity: [0, 1, 0], scale: [0, 2, 0], y: [0, -30] }}
-                transition={{ duration: 3 + Math.random() * 2, repeat: Infinity, delay: Math.random() * 3 }}
+                className="absolute rounded-full border border-emerald/20"
+                style={{
+                  width: 40 + i * 30,
+                  height: 40 + i * 30,
+                  left: `${10 + i * 11}%`,
+                  bottom: -20 - i * 5,
+                  background: `radial-gradient(circle, hsl(var(--emerald) / ${0.06 + i * 0.02}), transparent 70%)`,
+                }}
+                animate={{
+                  y: [0, -(60 + i * 20), 0],
+                  x: [0, (i % 2 === 0 ? 15 : -15), 0],
+                  scale: [1, 1.15, 1],
+                  opacity: [0.3, 0.7, 0.3],
+                }}
+                transition={{
+                  duration: 4 + i * 1.5,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  delay: i * 0.5,
+                }}
               />
             ))}
           </div>
