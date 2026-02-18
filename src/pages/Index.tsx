@@ -38,7 +38,7 @@ export default function Index() {
               repeat: Infinity,
               ease: "linear",
             }}
-            style={{ transformOrigin: "center center", scale: 1.1 }}
+            style={{ transformOrigin: "center center", scale: 0.85 }}
           />
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-secondary" />
 
@@ -113,18 +113,18 @@ export default function Index() {
             <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl font-extrabold leading-[1.1] mb-6">
               <motion.span
                 className="text-secondary-foreground inline-block"
-                initial={{ letterSpacing: "0.12em", opacity: 0, scale: 0.85 }}
+                initial={{ letterSpacing: "0.18em", opacity: 0, scale: 0.8 }}
                 animate={{
                   letterSpacing: "0em",
                   opacity: 1,
                   scale: 1,
-                  rotate: [0, -1, 1.5, -1, 0.5, 0],
+                  rotate: [0, -0.8, 1, -0.8, 0.4, 0],
                 }}
                 transition={{
-                  letterSpacing: { duration: 1.4, ease: "easeOut" },
-                  opacity: { duration: 0.8 },
-                  scale: { duration: 1.4, ease: "easeOut" },
-                  rotate: { duration: 2.5, repeat: Infinity, ease: "easeInOut", delay: 1.5 },
+                  letterSpacing: { duration: 2.5, ease: "easeOut" },
+                  opacity: { duration: 1.5 },
+                  scale: { duration: 2.5, ease: "easeOut" },
+                  rotate: { duration: 4, repeat: Infinity, ease: "easeInOut", delay: 3 },
                 }}
               >
                 Discover the
@@ -132,20 +132,20 @@ export default function Index() {
               <br />
               <motion.span
                 className="text-gradient-gold inline-block"
-                initial={{ letterSpacing: "0.2em", opacity: 0, scale: 0.8 }}
+                initial={{ letterSpacing: "0.25em", opacity: 0, scale: 0.75 }}
                 animate={{
                   letterSpacing: "0em",
                   opacity: 1,
-                  scale: [1, 1.02, 0.98, 1.01, 1],
-                  rotate: [0, 0.8, -1, 0.5, 0],
+                  scale: [1, 1.015, 0.985, 1.01, 1],
+                  rotate: [0, 0.6, -0.8, 0.4, 0],
                   backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
                 }}
                 transition={{
-                  letterSpacing: { duration: 1.8, ease: "easeOut", delay: 0.3 },
-                  opacity: { duration: 1, delay: 0.3 },
-                  scale: { duration: 3, repeat: Infinity, ease: "easeInOut", delay: 1.5 },
-                  rotate: { duration: 4, repeat: Infinity, ease: "easeInOut", delay: 2 },
-                  backgroundPosition: { duration: 4, repeat: Infinity, delay: 1.5 },
+                  letterSpacing: { duration: 3, ease: "easeOut", delay: 0.5 },
+                  opacity: { duration: 1.8, delay: 0.5 },
+                  scale: { duration: 5, repeat: Infinity, ease: "easeInOut", delay: 3 },
+                  rotate: { duration: 6, repeat: Infinity, ease: "easeInOut", delay: 3.5 },
+                  backgroundPosition: { duration: 6, repeat: Infinity, delay: 3 },
                 }}
                 style={{ backgroundSize: "200% 200%" }}
               >
