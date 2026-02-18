@@ -12,7 +12,7 @@ export default function Footer() {
       <div className="container mx-auto px-4">
         <div className="flex flex-col items-center gap-4">
           <Link to="/" className="flex items-center gap-2">
-            <img src={kinglandLogo} alt="KingLand" className="h-6 w-6 object-contain" />
+            <img src={kinglandLogo} alt="KingLand" className="h-6 w-6 object-contain invert" />
             <span className="font-display font-bold text-secondary-foreground">
               King<span className="text-gradient-gold">Land</span>
             </span>
