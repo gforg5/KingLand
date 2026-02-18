@@ -126,40 +126,42 @@ export default function Index() {
             {/* Text expand animation */}
             <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl font-extrabold leading-[1.1] mb-6">
               <motion.span
-                className="text-secondary-foreground inline-block"
-                initial={{ letterSpacing: "0.22em", opacity: 0, scale: 0.75 }}
+                className="text-secondary-foreground inline-block cursor-default"
+                initial={{ letterSpacing: "0.22em", opacity: 1 }}
                 animate={{
-                  letterSpacing: "0em",
-                  opacity: 1,
-                  scale: 1,
                   rotate: [0, -0.5, 0.6, -0.4, 0.2, 0],
+                  scale: [1, 1.01, 0.99, 1.005, 1],
+                }}
+                whileHover={{
+                  letterSpacing: "0em",
+                  scale: 1,
                 }}
                 transition={{
-                  letterSpacing: { duration: 4, ease: "easeOut" },
-                  opacity: { duration: 2.5 },
-                  scale: { duration: 4, ease: "easeOut" },
-                  rotate: { duration: 7, repeat: Infinity, ease: "easeInOut", delay: 5 },
+                  letterSpacing: { duration: 1.5, ease: "easeOut" },
+                  rotate: { duration: 7, repeat: Infinity, ease: "easeInOut" },
+                  scale: { duration: 8, repeat: Infinity, ease: "easeInOut" },
                 }}
               >
                 Discover the
               </motion.span>
               <br />
               <motion.span
-                className="text-gradient-gold inline-block"
-                initial={{ letterSpacing: "0.3em", opacity: 0, scale: 0.7 }}
+                className="text-gradient-gold inline-block cursor-default"
+                initial={{ letterSpacing: "0.3em", opacity: 1 }}
                 animate={{
-                  letterSpacing: "0em",
-                  opacity: 1,
-                  scale: [1, 1.01, 0.99, 1.005, 1],
                   rotate: [0, 0.4, -0.5, 0.3, 0],
+                  scale: [1, 1.01, 0.99, 1.005, 1],
                   backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
                 }}
+                whileHover={{
+                  letterSpacing: "0em",
+                  scale: 1.02,
+                }}
                 transition={{
-                  letterSpacing: { duration: 4.5, ease: "easeOut", delay: 0.8 },
-                  opacity: { duration: 3, delay: 0.8 },
-                  scale: { duration: 8, repeat: Infinity, ease: "easeInOut", delay: 5 },
-                  rotate: { duration: 9, repeat: Infinity, ease: "easeInOut", delay: 5.5 },
-                  backgroundPosition: { duration: 8, repeat: Infinity, delay: 5 },
+                  letterSpacing: { duration: 1.5, ease: "easeOut" },
+                  rotate: { duration: 9, repeat: Infinity, ease: "easeInOut" },
+                  scale: { duration: 8, repeat: Infinity, ease: "easeInOut" },
+                  backgroundPosition: { duration: 8, repeat: Infinity },
                 }}
                 style={{ backgroundSize: "200% 200%" }}
               >
