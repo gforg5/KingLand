@@ -36,10 +36,10 @@ export default function Footer() {
             onMouseEnter={() => setHovered(true)}
             onMouseLeave={() => setHovered(false)}
           >
-            <div className="relative h-6 flex items-center justify-center min-w-[200px]">
+            <div className="relative h-6 flex items-center justify-center" style={{ minWidth: "320px" }}>
               {/* Default text: Made with ❤️ in PK */}
               <motion.div
-                className="absolute inset-0 flex items-center justify-center gap-1.5 text-sm text-muted-foreground"
+                className="absolute inset-0 flex items-center justify-center gap-1.5 text-sm text-muted-foreground whitespace-nowrap"
                 animate={{
                   x: hovered ? "-110%" : "0%",
                   opacity: hovered ? 0 : 1,
