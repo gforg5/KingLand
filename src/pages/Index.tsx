@@ -38,7 +38,7 @@ export default function Index() {
               repeat: Infinity,
               ease: "linear",
             }}
-            style={{ transformOrigin: "center center", scale: 1.4 }}
+            style={{ transformOrigin: "center center", scale: 1.1 }}
           />
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-secondary" />
 
@@ -113,26 +113,38 @@ export default function Index() {
             <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl font-extrabold leading-[1.1] mb-6">
               <motion.span
                 className="text-secondary-foreground inline-block"
-                initial={{ letterSpacing: "0.05em", opacity: 0 }}
-                animate={{ letterSpacing: "0em", opacity: 1 }}
-                transition={{ duration: 1.2, ease: "easeOut" }}
+                initial={{ letterSpacing: "0.12em", opacity: 0, scale: 0.85 }}
+                animate={{
+                  letterSpacing: "0em",
+                  opacity: 1,
+                  scale: 1,
+                  rotate: [0, -1, 1.5, -1, 0.5, 0],
+                }}
+                transition={{
+                  letterSpacing: { duration: 1.4, ease: "easeOut" },
+                  opacity: { duration: 0.8 },
+                  scale: { duration: 1.4, ease: "easeOut" },
+                  rotate: { duration: 2.5, repeat: Infinity, ease: "easeInOut", delay: 1.5 },
+                }}
               >
                 Discover the
               </motion.span>
               <br />
               <motion.span
                 className="text-gradient-gold inline-block"
-                initial={{ letterSpacing: "0.15em", opacity: 0, scale: 0.9 }}
+                initial={{ letterSpacing: "0.2em", opacity: 0, scale: 0.8 }}
                 animate={{
                   letterSpacing: "0em",
                   opacity: 1,
-                  scale: 1,
+                  scale: [1, 1.02, 0.98, 1.01, 1],
+                  rotate: [0, 0.8, -1, 0.5, 0],
                   backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
                 }}
                 transition={{
-                  letterSpacing: { duration: 1.5, ease: "easeOut", delay: 0.3 },
+                  letterSpacing: { duration: 1.8, ease: "easeOut", delay: 0.3 },
                   opacity: { duration: 1, delay: 0.3 },
-                  scale: { duration: 1.2, delay: 0.3 },
+                  scale: { duration: 3, repeat: Infinity, ease: "easeInOut", delay: 1.5 },
+                  rotate: { duration: 4, repeat: Infinity, ease: "easeInOut", delay: 2 },
                   backgroundPosition: { duration: 4, repeat: Infinity, delay: 1.5 },
                 }}
                 style={{ backgroundSize: "200% 200%" }}
