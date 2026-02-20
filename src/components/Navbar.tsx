@@ -19,7 +19,7 @@ export default function Navbar() {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-secondary/95 backdrop-blur-md border-b border-navy-light/50">
       <div className="container mx-auto flex items-center justify-between h-16 px-4">
         <Link to="/" className="flex items-center gap-2.5">
-          <img src={kinglandLogo} alt="KingLand" className="h-7 w-7 object-contain invert" />
+          <img src={kinglandLogo} alt="KingLand" className="h-7 w-7 object-contain invert brightness-200" />
           <span className="font-display text-xl font-bold text-secondary-foreground">
             King<span className="text-gradient-gold">Land</span>
           </span>
