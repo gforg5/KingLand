@@ -123,16 +123,16 @@ export default function Index() {
               </span>
             </motion.div>
 
-            {/* Text expand animation — wobble always, expand on hover */}
+            {/* Text: wobble always, expand only on hover, no line wrap */}
             <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl font-extrabold leading-[1.1] mb-6">
               <motion.span
-                className="text-secondary-foreground inline-block cursor-default"
+                className="text-secondary-foreground inline-block cursor-default whitespace-nowrap"
                 animate={{
                   rotate: [0, -0.4, 0.5, -0.3, 0.2, 0],
                   scale: [1, 1.008, 0.994, 1.004, 1],
                 }}
                 whileHover={{
-                  letterSpacing: "0.18em",
+                  letterSpacing: "0.14em",
                 }}
                 transition={{
                   letterSpacing: { duration: 2.5, ease: "easeOut" },
@@ -144,15 +144,15 @@ export default function Index() {
               </motion.span>
               <br />
               <motion.span
-                className="text-gradient-gold inline-block cursor-default"
+                className="text-gradient-gold inline-block cursor-default whitespace-nowrap"
                 animate={{
                   rotate: [0, 0.3, -0.4, 0.25, 0],
                   scale: [1, 1.008, 0.994, 1.004, 1],
                   backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
                 }}
                 whileHover={{
-                  letterSpacing: "0.2em",
-                  scale: 1.015,
+                  letterSpacing: "0.14em",
+                  scale: 1.01,
                 }}
                 transition={{
                   letterSpacing: { duration: 2.8, ease: "easeOut" },
