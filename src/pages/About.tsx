@@ -32,7 +32,7 @@ export default function About() {
             About <span className="text-gradient-gold">KingLand</span>
           </h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            Your gateway to genuine global knowledge — authentic, real, and 1000% reliable.
+            Your gateway to genuine global knowledge — authentic, real, and deeply reliable.
           </p>
         </motion.div>
 

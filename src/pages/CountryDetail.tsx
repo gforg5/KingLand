@@ -239,23 +239,52 @@ function AIChatSection({ countryName }: { countryName: string }) {
   const [loading, setLoading] = useState(false);
 
   const askQuestion = async () => {
-    if (!question.trim()) return;
+    if (!question.trim() || loading) return;
     const q = question.trim();
     setMessages((prev) => [...prev, { role: "user", text: q }]);
     setQuestion("");
     setLoading(true);
 
-    // Simple knowledge-based response (no API key needed)
-    setTimeout(() => {
+    try {
+      // Use Wikipedia's free extract API — no key needed, real factual answers
+      const searchRes = await fetch(
+        `https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=${encodeURIComponent(countryName + " " + q)}&srlimit=1&format=json&origin=*`
+      );
+      const searchData = await searchRes.json();
+      const pageTitle = searchData?.query?.search?.[0]?.title;
+
+      if (pageTitle) {
+        const extractRes = await fetch(
+          `https://en.wikipedia.org/w/api.php?action=query&prop=extracts&exintro&explaintext&exsentences=2&titles=${encodeURIComponent(pageTitle)}&format=json&origin=*`
+        );
+        const extractData = await extractRes.json();
+        const pages = extractData?.query?.pages;
+        const pageId = Object.keys(pages || {})[0];
+        const extract = pages?.[pageId]?.extract?.trim();
+
+        if (extract && extract.length > 20) {
+          setMessages((prev) => [
+            ...prev,
+            { role: "ai", text: extract },
+          ]);
+          setLoading(false);
+          return;
+        }
+      }
+
+      // Fallback if Wikipedia returns nothing useful
       setMessages((prev) => [
         ...prev,
-        {
-          role: "ai",
-          text: `Great question about ${countryName}! For detailed and authentic information about "${q}", I recommend exploring the tabs above (Overview, Geography, Government, Economy, Culture) which contain verified data from the REST Countries API. You can also use the Google, Bing, or X search buttons above for more in-depth research.`,
-        },
+        { role: "ai", text: `${countryName} is located in ${countryName === "Unknown" ? "the world" : "its region"}. For more details, use the tabs above or search via Google.` },
       ]);
+    } catch {
+      setMessages((prev) => [
+        ...prev,
+        { role: "ai", text: "Couldn't fetch an answer right now. Try the search buttons above!" },
+      ]);
+    } finally {
       setLoading(false);
-    }, 800);
+    }
   };
 
   return (
