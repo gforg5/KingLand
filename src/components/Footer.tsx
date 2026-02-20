@@ -36,20 +36,21 @@ export default function Footer() {
             onMouseEnter={() => setHovered(true)}
             onMouseLeave={() => setHovered(false)}
           >
-            <div className="relative h-6 flex items-center justify-center" style={{ minWidth: "320px" }}>
+            <div className="relative h-8 flex items-center justify-center" style={{ minWidth: "340px" }}>
               {/* Default text: Made with ❤️ in PK */}
               <motion.div
                 className="absolute inset-0 flex items-center justify-center gap-1.5 text-sm text-muted-foreground whitespace-nowrap"
                 animate={{
-                  x: hovered ? "-110%" : "0%",
+                  x: hovered ? "-120%" : "0%",
                   opacity: hovered ? 0 : 1,
+                  filter: hovered ? "blur(4px)" : "blur(0px)",
                 }}
-                transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
+                transition={{ duration: 0.9, ease: [0.76, 0, 0.24, 1] }}
               >
                 Made with{" "}
                 <motion.span
                   animate={{ scale: [1, 1.3, 1] }}
-                  transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
                 >
                   <Heart className="h-4 w-4 text-destructive fill-destructive" />
                 </motion.span>{" "}
@@ -60,13 +61,14 @@ export default function Footer() {
               <motion.div
                 className="absolute inset-0 flex items-center justify-center"
                 animate={{
-                  x: hovered ? "0%" : "110%",
+                  x: hovered ? "0%" : "120%",
                   opacity: hovered ? 1 : 0,
+                  filter: hovered ? "blur(0px)" : "blur(6px)",
                 }}
-                transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
+                transition={{ duration: 0.9, ease: [0.76, 0, 0.24, 1] }}
               >
-                <span className="text-sm font-display font-semibold text-gradient-emerald whitespace-nowrap">
-                  Pakhtunistan, Khyber Pakhtunkhwa
+                <span className="text-sm font-display font-semibold text-gradient-emerald whitespace-nowrap tracking-wide">
+                  Pakhtunistan, Khyber Pakhtunkhwa 🌿
                 </span>
               </motion.div>
             </div>
