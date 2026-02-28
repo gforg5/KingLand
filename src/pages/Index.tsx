@@ -96,7 +96,7 @@ export default function Index() {
           ))}
         </div>
 
-        <div className="container relative z-10 mx-auto px-4 py-32">
+        <div className="container relative z-10 mx-auto px-4 py-20 sm:py-32">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -124,9 +124,9 @@ export default function Index() {
             </motion.div>
 
             {/* Text: wobble always, expand only on hover, no line wrap */}
-            <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl font-extrabold leading-[1.1] mb-6">
+            <h1 className="font-display text-4xl sm:text-6xl lg:text-7xl font-extrabold leading-[1.1] mb-6">
               <motion.span
-                className="text-secondary-foreground inline-block cursor-default whitespace-nowrap"
+                className="text-secondary-foreground inline-block cursor-default sm:whitespace-nowrap"
                 animate={{
                   rotate: [0, -0.4, 0.5, -0.3, 0.2, 0],
                   scale: [1, 1.008, 0.994, 1.004, 1],
@@ -144,7 +144,7 @@ export default function Index() {
               </motion.span>
               <br />
               <motion.span
-                className="text-gradient-gold inline-block cursor-default whitespace-nowrap"
+                className="text-gradient-gold inline-block cursor-default sm:whitespace-nowrap"
                 animate={{
                   rotate: [0, 0.3, -0.4, 0.25, 0],
                   scale: [1, 1.008, 0.994, 1.004, 1],
